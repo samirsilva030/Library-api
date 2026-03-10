@@ -1,4 +1,4 @@
-package io.github.samirsilva.libraryapi.Model;
+package io.github.samirsilva.libraryapi.model;
 
 public enum GeneroLivro {
     FICCAO,

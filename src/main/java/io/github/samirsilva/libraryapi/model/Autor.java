@@ -1,4 +1,4 @@
-package io.github.samirsilva.libraryapi.Model;
+package io.github.samirsilva.libraryapi.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,15 +8,17 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+
 @Entity
 @Table(name = "autor", schema = "public")
+@Getter
+@Setter
+
 public class Autor {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Getter
-    @Setter
     private UUID id;
 
     @Column(name = "nome", length = 100, nullable = false)
@@ -28,6 +30,8 @@ public class Autor {
     @Column(name = "nacionalidade", length = 50, nullable = false)
     private String nacionalidade;
 
-    @OneToMany(mappedBy = "autor")
+    //@OneToMany(mappedBy = "autor")
+
+    @Transient
     private List<Livro> livros;
 }
