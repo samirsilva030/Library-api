@@ -110,4 +110,11 @@ class LivroRepositoryTest {
         List<Livro> lista = repository.findByTituloAndPreco(tituloPesquisa, preco );
         lista.forEach(System.out::println);
     }
+
+    @Test
+    void pesquisaTituloParecidoTest(){
+        var titulo = "%casa assombrada%";
+        List<Livro> lista = repository.findByTituloLike(titulo);
+        lista.forEach(System.out::println);
+    }
 }
