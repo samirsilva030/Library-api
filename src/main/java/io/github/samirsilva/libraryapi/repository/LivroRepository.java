@@ -3,6 +3,7 @@ package io.github.samirsilva.libraryapi.repository;
 import io.github.samirsilva.libraryapi.model.Autor;
 import io.github.samirsilva.libraryapi.model.Livro;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -30,4 +31,30 @@ public interface LivroRepository extends JpaRepository<Livro, UUID> {
 
     List<Livro> findByTituloLike(String titulo);
 
+    //JPQL ele referencia as entidades e as propriedades por isso o l
+    // select l.* from livro as l order by l.titulo
+    @Query(" select l from Livro as l order by l.titulo, l.preco ")
+    List<Livro> listarTodosOrdenadoPorTituloAndPreco();
+
+    /**
+     * select a.*
+     * from livro l
+     * join autor a an a.id = l.id_autor
+     */
+    @Query("select a from Livro l join l.autor a")
+    List<Autor> ListarAutoresDosLivros();
+
+    //explicando do pq String e n livro: pq eu estou referenciando a variavel titulo e n o l de livro
+    // select distinct l.* from livro l
+    @Query("select distinct l.titulo from Livro l")
+    List<String> listarNomesDiferentesLivros();
+
+    @Query("""
+            select l.genero
+            from Livro l 
+            join l.autor a
+            where a.nacionalidade = 'Brasileira'
+            order by l.genero
+            """)
+    List<String> listarGenerosAutoresBrasileiros();
 }
