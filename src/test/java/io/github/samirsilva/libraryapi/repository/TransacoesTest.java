@@ -12,7 +12,7 @@ public class TransacoesTest {
     TransacaoService transacaoService;
 
     @Test
-    void transacaoSimples(){
-    transacaoService.executar();
+    void transacaoSimples() {
+        transacaoService.executar();
     }
 }
