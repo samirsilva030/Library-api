@@ -9,8 +9,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.security.Provider;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("autores")
@@ -61,4 +63,15 @@ public class AutorController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping
+    public ResponseEntity<List<AutorDTO>> pesquisar(
+        @RequestParam(value = "nome", required = false) String nome,
+        @RequestParam(value = "nacionalidade", required = false) String nacionialidade){
+        List<Autor> resultado = service.pesquisa(nome,nacionialidade);
+        List<AutorDTO> lista = resultado.stream().map(autor -> new AutorDTO(autor.getId(), autor.getNome(), autor.getDataNascimento(), autor.getNacionalidade())).collect(Collectors.toList());
+
+        return ResponseEntity.ok(lista);
+    }
+
 }
