@@ -1,4 +1,4 @@
-package io.github.samirsilva.libraryapi.controller;
+package io.github.samirsilva.libraryapi.controller.dto;
 
 import io.github.samirsilva.libraryapi.model.Autor;
 

@@ -1,14 +1,14 @@
 package io.github.samirsilva.libraryapi.controller;
 
+import io.github.samirsilva.libraryapi.controller.dto.AutorDTO;
+import io.github.samirsilva.libraryapi.controller.dto.ErroResposta;
 import io.github.samirsilva.libraryapi.model.Autor;
 import io.github.samirsilva.libraryapi.service.AutorService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.security.Provider;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,6 +35,7 @@ public class AutorController {
                 .path("/{id}")
                 .buildAndExpand(autorEntidade.getId())
                 .toUri();
+        
 
         return ResponseEntity.created(location).build();
     }
